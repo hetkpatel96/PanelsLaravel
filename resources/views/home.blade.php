@@ -43,6 +43,7 @@
                                 @endforelse
 
 
+
                             </div>
 
                         </div>
@@ -57,3 +58,30 @@
             </div>
         </div>
 @endsection
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Authorization Access LOOKS</div>
+
+                        <div class="panel-body">
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+
+                            You are logged in! as <strong>{{ strtoupper(Auth::user()->role) }}</strong>
+                            <br>
+
+                            ADMIN PAGE ONLY: <a href="{{ url('/') }}/adminOnlyPage">{{ url('/') }}/adminOnlyPage</a>
+                            <br>SUPER ADMIN PAGE ONLY: <a href="{{ url('/') }}/superAdminOnlyPage">{{ url('/') }}/super_adminOnlyPage</a>
+                            <br>MEMBER PAGE ONLY: <a href="{{ url('/') }}/memberOnlyPage">{{ url('/') }}/memberOnlyPage</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
