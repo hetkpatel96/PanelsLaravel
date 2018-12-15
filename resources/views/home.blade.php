@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Authorization Access LOOKS</div>
+                        <div class="panel-heading">Authorization Access</div>
 
                         <div class="panel-body">
                             @if (session('status'))
@@ -72,7 +72,7 @@
                                 </div>
                             @endif
 
-                            You are logged in! as <strong>{{ strtoupper(Auth::user()->role) }}</strong>
+                            You are logged in! as <strong>{{ strtoupper(Auth::user()->type) }}</strong>
                             <br>
 
                             ADMIN PAGE ONLY: <a href="{{ url('/') }}/adminOnlyPage">{{ url('/') }}/adminOnlyPage</a>
