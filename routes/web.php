@@ -18,11 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 Route::prefix('admin')->group(function(){
 Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 Route::get('/', 'AdminController@index')->name('admin.dashboard');
+Route::get('logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 });
 
 
@@ -44,6 +46,23 @@ Route::delete('/questions/{question_id}/answer/{answer_id}', 'AnswerController@d
 Route::resources([
     'questions' => 'QuestionController',
 ]);
+
+
+Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+{
+    Route::match(['get', 'post'], '/adminOnlyPage/', 'HomeController@admin');
+});
+
+Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function()
+{
+    Route::match(['get', 'post'], '/memberOnlyPage/', 'HomeController@member');
+});
+
+Route::group(['middleware' => 'App\Http\Middleware\SuperAdminMiddleware'], function()
+{
+    Route::match(['get', 'post'], '/superAdminOnlyPage/', 'HomeController@super_admin');
+});
+
 
 
 
