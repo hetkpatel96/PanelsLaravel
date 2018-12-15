@@ -72,7 +72,7 @@
     @endif
     <div class="content">
         <div class="title m-b-md">
-            this page is for only '{{$role}}'"
+            Page is only for '{{$role}}'"
         </div>
     </div>
 </div>
