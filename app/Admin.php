@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Cache;
 
 /**
  * App\User
@@ -29,16 +28,18 @@ use Cache;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
+
+    protected $guard = 'admin';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'type',
+        'email', 'password', 'job_title',
     ];
 
     /**
@@ -49,20 +50,5 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function profile()
-    {
-        return $this->hasOne('App\Profile');
-    }
-
-    public function questions()
-    {
-        return $this->hasMany('App\Question');
-    }
-
-    public function answers()
-    {
-        return $this->hasMany('App\Answer');
-    }
 
 }
