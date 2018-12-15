@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
 
 class UserTest extends TestCase
 {
@@ -32,5 +33,12 @@ class UserTest extends TestCase
     {
         $user = factory(\App\User::class)->make();
         $this->assertTrue(is_object($user->profile()->get()));
+    }
+
+    public function testType()
+    {
+        $user = User::inRandomOrder()->first();
+        $value=$user->type;
+        $this->assertContains($value, ['Admin','SuperAdmin','Member']);
     }
 }
