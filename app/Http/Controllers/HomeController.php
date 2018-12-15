@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -28,4 +29,15 @@ class HomeController extends Controller
         $questions = $user->questions()->paginate(6);
         return view('home')->with('questions', $questions);
     }
+    public function admin(Request $req){
+        return view('middleware')->withMessage("Admin");
+    }
+    public function super_admin(Request $req){
+        return view('middleware')->withMessage("Super Admin");
+    }
+    public function member(Request $req){
+        return view('middleware')->withMessage("Member");
+    }
+
+
 }
