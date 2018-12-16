@@ -11,7 +11,6 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
@@ -24,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
